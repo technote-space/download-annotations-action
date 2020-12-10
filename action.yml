@@ -66,6 +66,8 @@ inputs:
     required: false
 
 outputs:
+  ANNOTATIONS_NUMBER:
+    description: number of annotations
   ANNOTATIONS_PATH:
     description: annotations file path
   ANNOTATIONS_RESULT_PATH:
