@@ -1,11 +1,11 @@
-# GitHub Actions Template
+# Download Annotations Action
 
-[![CI Status](https://github.com/technote-space/gh-actions-template/workflows/CI/badge.svg)](https://github.com/technote-space/gh-actions-template/actions)
-[![codecov](https://codecov.io/gh/technote-space/gh-actions-template/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/gh-actions-template)
-[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gh-actions-template/badge)](https://www.codefactor.io/repository/github/technote-space/gh-actions-template)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/gh-actions-template/blob/master/LICENSE)
+[![CI Status](https://github.com/technote-space/download-annotations-action/workflows/CI/badge.svg)](https://github.com/technote-space/download-annotations-action/actions)
+[![codecov](https://codecov.io/gh/technote-space/download-annotations-action/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/download-annotations-action)
+[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/download-annotations-action/badge)](https://www.codefactor.io/repository/github/technote-space/download-annotations-action)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/download-annotations-action/blob/master/LICENSE)
 
-Template for GitHub actions.
+GitHub actions to download annotations.
 
 ## Table of Contents
 
@@ -147,7 +147,7 @@ https://api.slack.com/messaging/webhooks
    - Dry run: `yarn release -n`
    - Help: `yarn release -h`
 
-![cli](https://github.com/technote-space/gh-actions-template/raw/images/cli.gif)
+![cli](https://github.com/technote-space/download-annotations-action/raw/images/cli.gif)
 
 Then, you can use your `GitHub Actions` like follows:
 
