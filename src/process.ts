@@ -41,5 +41,5 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
   );
   console.log(filtered.map(convertAnnotationResult));
 
-  createFile(getWorkspace(), getFilename(), getResultFilename(), filtered);
+  createFile(getWorkspace(), getFilename(), getResultFilename(), filtered, logger);
 };

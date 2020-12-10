@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers */
 import fs from 'fs';
 import {resolve} from 'path';
+import {Logger} from '@technote-space/github-action-log-helper';
 import {createFile} from '../../src/utils/io';
 
 jest.mock('fs');
@@ -13,7 +14,7 @@ describe('createFile', () => {
     jest.spyOn(fs, 'mkdirSync').mockImplementation(mkdirSyncFn);
     jest.spyOn(fs, 'writeFileSync').mockImplementation(writeFileSyncFn);
 
-    createFile('workspace', 'filename', 'result', []);
+    createFile('workspace', 'filename', 'result', [], new Logger());
 
     expect(mkdirSyncFn).not.toBeCalled();
     expect(writeFileSyncFn).toBeCalledTimes(2);
@@ -30,7 +31,7 @@ describe('createFile', () => {
     jest.spyOn(fs, 'mkdirSync').mockImplementation(mkdirSyncFn);
     jest.spyOn(fs, 'writeFileSync').mockImplementation(writeFileSyncFn);
 
-    createFile('workspace', '', '', []);
+    createFile('workspace', '', '', [], new Logger());
 
     expect(mkdirSyncFn).toBeCalledTimes(1);
     expect(writeFileSyncFn).not.toBeCalled();
