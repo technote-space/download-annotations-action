@@ -9,8 +9,9 @@ export const createFile = (workspace: string, filename: string, resultFilename: 
     mkdirSync(workspace, {recursive: true});
   }
 
+  const annotationsArray = convertAnnotationData(annotations);
   if (filename) {
-    writeFileSync(resolve(workspace, filename), JSON.stringify(convertAnnotationData(annotations)));
+    writeFileSync(resolve(workspace, filename), JSON.stringify(annotationsArray));
     setOutput('ANNOTATIONS_PATH', resolve(workspace, filename));
   }
 
@@ -19,5 +20,6 @@ export const createFile = (workspace: string, filename: string, resultFilename: 
     setOutput('ANNOTATIONS_RESULT_PATH', resolve(workspace, resultFilename));
   }
 
-  setOutput('ANNOTATIONS_NUMBER', convertAnnotationData(annotations).length);
+  setOutput('ANNOTATIONS_NUMBER', annotationsArray.length);
+  setOutput('ANNOTATION_MESSAGES', annotationsArray.map(annotation => annotation.message).join('\n'));
 };
