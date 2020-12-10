@@ -253,6 +253,35 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: success() && env.SLACK_WEBHOOK_URL
 
+  annotations:
+    name: Annotations
+    needs: publishRelease
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    if: always()
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: gh-actions
+      - name: Download Annotations
+        uses: ./
+        with:
+          INCLUDE_LEVELS: warning
+      - name: Build attachments
+        run: echo "SLACK_ATTACHMENTS=$(echo "${ANNOTATION_MESSAGES}" | jq -R -s 'split("\n") | map(select(length > 0)) | map({"color":"warning","text":.})')" >> $GITHUB_ENV
+        if: env.ANNOTATIONS_NUMBER > 0
+      - uses: 8398a7/action-slack@v3
+        with:
+          status: succeed
+          custom_payload: |
+            {
+              text: "Warning annotations",
+              attachments: ${{ env.SLACK_ATTACHMENTS }}
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: env.ANNOTATIONS_NUMBER > 0 && env.SLACK_WEBHOOK_URL
+
   slack:
     name: Slack
     needs: publishRelease
