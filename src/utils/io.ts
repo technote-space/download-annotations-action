@@ -18,4 +18,6 @@ export const createFile = (workspace: string, filename: string, resultFilename: 
     writeFileSync(resolve(workspace, resultFilename), JSON.stringify(annotations.map(convertAnnotationResult)));
     setOutput('ANNOTATIONS_RESULT_PATH', resolve(workspace, resultFilename));
   }
+
+  setOutput('ANNOTATIONS_NUMBER', convertAnnotationData(annotations).length);
 };

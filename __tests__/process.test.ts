@@ -226,6 +226,7 @@ describe('execute', () => {
       ]),
       `::set-output name=ANNOTATIONS_PATH::${rootDir}/\${{ github.workspace }}/annotations.json`,
       `::set-output name=ANNOTATIONS_RESULT_PATH::${rootDir}/\${{ github.workspace }}/result.json`,
+      '::set-output name=ANNOTATIONS_NUMBER::2',
     ]);
 
     expect(writeFileSyncFn).toBeCalledTimes(2);
