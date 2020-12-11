@@ -12,14 +12,14 @@ export const createFile = (workspace: string, filename: string, resultFilename: 
   const annotationsArray = convertAnnotationData(annotations);
   if (filename) {
     writeFileSync(resolve(workspace, filename), JSON.stringify(annotationsArray));
-    setResult('ANNOTATIONS_PATH', resolve(workspace, filename), logger);
+    setResult('path', resolve(workspace, filename), logger);
   }
 
   if (resultFilename) {
     writeFileSync(resolve(workspace, resultFilename), JSON.stringify(annotations.map(convertAnnotationResult)));
-    setResult('ANNOTATIONS_RESULT_PATH', resolve(workspace, resultFilename), logger);
+    setResult('result_path', resolve(workspace, resultFilename), logger);
   }
 
-  setResult('ANNOTATIONS_NUMBER', annotationsArray.length, logger);
-  setResult('ANNOTATION_MESSAGES', annotationsArray.map(annotation => annotation.message).join('\n'), logger);
+  setResult('number', annotationsArray.length, logger);
+  setResult('messages', JSON.stringify(annotationsArray.map(annotation => annotation.message)), logger);
 };

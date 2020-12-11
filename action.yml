@@ -66,13 +66,13 @@ inputs:
     required: false
 
 outputs:
-  ANNOTATIONS_NUMBER:
+  number:
     description: number of annotations
-  ANNOTATION_MESSAGES:
+  messages:
     description: messages of annotations
-  ANNOTATIONS_PATH:
+  path:
     description: annotations file path
-  ANNOTATIONS_RESULT_PATH:
+  result_path:
     description: result file path
 
 branding:
