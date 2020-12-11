@@ -20,6 +20,7 @@ jobs:
         id: annotations
         uses: ./
         with:
+          TARGET_RUN_ID: ${{ github.event.workflow_run.id }}
           INCLUDE_LEVELS: warning
       - name: Build attachments
         run: echo "SLACK_ATTACHMENTS=$(echo '${{ steps.annotations.outputs.messages }}' | jq -c 'map({"color":"warning","text":.})')" >> $GITHUB_ENV
