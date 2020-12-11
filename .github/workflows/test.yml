@@ -1,10 +1,13 @@
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows:
+      - CI
+      - Sync workflows
+      - Update dependencies
     types:
       - completed
 
-name: Check Annotations
+name: Check Warnings
 
 jobs:
   annotations:
@@ -12,21 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: gh-actions
-      - name: Download Annotations
+      - uses: technote-space/download-annotations-action@gh-actions
         id: annotations
-        uses: ./
         with:
           TARGET_RUN_ID: ${{ github.event.workflow_run.id }}
           INCLUDE_LEVELS: warning
       - name: Build attachments
-        run: echo "SLACK_ATTACHMENTS=$(echo '${{ steps.annotations.outputs.messages }}' | jq -c 'map({"color":"warning","text":.})')" >> $GITHUB_ENV
+        run: |
+          arr1='[{"color":"good","fields":[{"title":"repo","value":"<https://github.com/${{ github.repository }}|${{ github.repository }}>","short":true},{"title":"action","value":"<${{ github.event.workflow_run.html_url }}|action>","short":true}]}]'
+          arr2=$(echo '${{ steps.annotations.outputs.messages }}' | jq -c 'map({"color":"warning","text":.})')
+          echo "SLACK_ATTACHMENTS=$(jq --argjson arr1 "$arr1" --argjson arr2 "$arr2" -nc '$arr1 + $arr2')" >> $GITHUB_ENV
         if: steps.annotations.outputs.number > 0
       - uses: 8398a7/action-slack@v3
         with:
           status: custom
+          fields: repo
           custom_payload: |
             {
               text: "Warning annotations",
