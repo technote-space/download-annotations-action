@@ -798,15 +798,15 @@
     "@actions/core" "^1.2.6"
     sprintf-js "^1.1.2"
 
-"@technote-space/github-action-test-helper@^0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-test-helper/-/github-action-test-helper-0.6.5.tgz#cb5a938e09508edce1d5e939d42dfb16276ad895"
-  integrity sha512-yy28r9Ny0yWjKaKZcqxkoGvWPZbKrJ95tWXoG13GSLqDunCBIZqR+hjEshcaG4GL3fCyglM8aHbhTmQWlwLiMA==
+"@technote-space/github-action-test-helper@^0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-test-helper/-/github-action-test-helper-0.6.6.tgz#a00b614c6ee6f84e0cb0c624ea85cc276bb258a9"
+  integrity sha512-bA7crwtCru5+NQxbaTUepEsRUwXLQBXLRuI9gSg8I62DaGMobpQ5z2FimjDPXaJaDbo0gfgvJYbU+s9/3LN4/A==
   dependencies:
     "@actions/core" "^1.2.6"
     "@actions/github" "^4.0.0"
     "@octokit/plugin-rest-endpoint-methods" "^4.4.1"
-    js-yaml "^3.14.0"
+    js-yaml "^3.14.1"
 
 "@technote-space/release-github-actions-cli@^1.7.3":
   version "1.7.3"
@@ -3256,7 +3256,7 @@ js-tokens@^4.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
-js-yaml@^3.13.1, js-yaml@^3.14.0:
+js-yaml@^3.13.1, js-yaml@^3.14.0, js-yaml@^3.14.1:
   version "3.14.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
   integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
