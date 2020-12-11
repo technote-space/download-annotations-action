@@ -1,7 +1,8 @@
 /* eslint-disable no-magic-numbers */
-import {testEnv} from '@technote-space/github-action-test-helper';
+import {testEnv, generateContext} from '@technote-space/github-action-test-helper';
 import {
   getMatchOptions,
+  getTargetRunId,
   getWorkspace,
   getFilename,
   getResultFilename,
@@ -45,6 +46,23 @@ describe('getMatchOptions', () => {
       matchBase: true,
       nonegate: true,
     });
+  });
+});
+
+describe('getTargetRunId', () => {
+  testEnv();
+
+  it('should get default target run id', () => {
+    expect(getTargetRunId(generateContext({owner: 'hello', repo: 'world'}, {
+      runId: 123,
+    }))).toBe(123);
+  });
+
+  it('should get target run id', () => {
+    process.env.INPUT_TARGET_RUN_ID = '456';
+    expect(getTargetRunId(generateContext({owner: 'hello', repo: 'world'}, {
+      runId: 123,
+    }))).toBe(456);
   });
 });
 

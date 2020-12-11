@@ -1,6 +1,7 @@
 import {Options} from 'multimatch';
 import {getInput} from '@actions/core' ;
 import {Utils} from '@technote-space/github-action-helper';
+import {Context} from '@actions/github/lib/context';
 
 export const getMatchOptions = (): Options => ({
   nobrace: Utils.getBoolValue(getInput('MINIMATCH_OPTION_NOBRACE')),
@@ -12,6 +13,7 @@ export const getMatchOptions = (): Options => ({
   nonegate: Utils.getBoolValue(getInput('MINIMATCH_OPTION_NONEGATE')),
 });
 
+export const getTargetRunId            = (context: Context): number => /^\d+$/.test(getInput('TARGET_RUN_ID')) ? Number(getInput('TARGET_RUN_ID')) : context.runId;
 export const getWorkspace              = (): string => getInput('WORKSPACE');
 export const getFilename               = (): string => getInput('FILENAME');
 export const getResultFilename         = (): string => getInput('RESULT_FILENAME');
