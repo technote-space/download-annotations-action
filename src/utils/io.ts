@@ -2,6 +2,7 @@ import {mkdirSync, existsSync, writeFileSync} from 'fs';
 import {resolve} from 'path';
 import {convertAnnotationData, convertAnnotationResult, setResult} from './misc';
 import {Annotations} from '../types';
+import {Utils} from '@technote-space/github-action-helper';
 import {Logger} from '@technote-space/github-action-log-helper';
 
 export const createFile = (workspace: string, filename: string, resultFilename: string, annotations: Annotations, logger: Logger): void => {
@@ -21,5 +22,5 @@ export const createFile = (workspace: string, filename: string, resultFilename: 
   }
 
   setResult('number', annotationsArray.length, logger);
-  setResult('messages', JSON.stringify(annotationsArray.map(annotation => annotation.message)), logger);
+  setResult('messages', JSON.stringify(annotationsArray.map(annotation => Utils.ensureNotNull(annotation.message).trim())), logger);
 };
