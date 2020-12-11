@@ -2,12 +2,13 @@ import multimatch, {Options} from 'multimatch';
 import {Utils} from '@technote-space/github-action-helper';
 import {Annotations} from '../types';
 
+const escapeSlashes = (value: string): string => value.replace(/\//g, '&#x2F;');
 const isMatched = (value: string | null, includePatterns: Array<string>, excludePatterns: Array<string>, options: Options): boolean => {
   if (!value) {
     return !includePatterns.length;
   }
 
-  return (!includePatterns.length || !!multimatch(value, includePatterns, options).length) && (!excludePatterns.length || !multimatch(value, excludePatterns, options).length);
+  return (!includePatterns.length || !!multimatch(escapeSlashes(value), includePatterns, options).length) && (!excludePatterns.length || !multimatch(escapeSlashes(value), excludePatterns, options).length);
 };
 
 export const filterByJobName = (annotations: Annotations, includePatterns: Array<string>, excludePatterns: Array<string>, options: Options): Annotations => annotations.filter(
