@@ -1,7 +1,7 @@
 # https://help.github.com/ja/articles/metadata-syntax-for-github-actions
-name: GitHub Actions Template
+name: Download Annotations Action
 
-description: Template for GitHub actions.
+description: GitHub actions to download annotations.
 
 author: technote-space
 
@@ -10,18 +10,80 @@ inputs:
     description: Secret GitHub API token to use for making API requests.
     default: ${{ github.token }}
     required: true
+  TARGET_RUN_ID:
+    description: Target run id
+    default: ${{ github.run_id }}
+    required: true
+  WORKSPACE:
+    description: workspace
+    default: ${{ github.workspace }}
+    required: true
+  FILENAME:
+    description: result filename
+    default: annotations.json
+    required: false
+  RESULT_FILENAME:
+    description: result filename
+    default: result.json
+    required: false
 
-#outputs:
-#  result:
-#    description: action result
+  INCLUDE_JOB_NAME_PATTERNS:
+    description: Include job name patterns.
+    required: false
+  EXCLUDE_JOB_NAME_PATTERNS:
+    description: Exclude job name patterns.
+    required: false
+
+  INCLUDE_LEVELS:
+    description: Include levels (notice, warning, or failure).
+    required: false
+  EXCLUDE_LEVELS:
+    description: Exclude levels (notice, warning, or failure).
+    required: false
+
+  INCLUDE_MESSAGE_PATTERNS:
+    description: Include message patterns.
+    required: false
+  EXCLUDE_MESSAGE_PATTERNS:
+    description: Exclude message patterns.
+    required: false
+  MINIMATCH_OPTION_NOBRACE:
+    description: https://github.com/isaacs/minimatch#nobrace
+    required: false
+  MINIMATCH_OPTION_NOGLOBSTAR:
+    description: https://github.com/isaacs/minimatch#noglobstar
+    required: false
+  MINIMATCH_OPTION_DOT:
+    description: https://github.com/isaacs/minimatch#dot
+    required: false
+  MINIMATCH_OPTION_NOEXT:
+    description: https://github.com/isaacs/minimatch#noext
+    required: false
+  MINIMATCH_OPTION_NOCASE:
+    description: https://github.com/isaacs/minimatch#nocase
+    required: false
+  MINIMATCH_OPTION_MATCH_BASE:
+    description: https://github.com/isaacs/minimatch#matchbase
+    required: false
+  MINIMATCH_OPTION_NONEGATE:
+    description: https://github.com/isaacs/minimatch#nonegate
+    required: false
+
+outputs:
+  number:
+    description: number of annotations
+  messages:
+    description: messages of annotations
+  path:
+    description: annotations file path
+  result_path:
+    description: result file path
 
 branding:
   # https://feathericons.com/
-  icon: 'package'
-  color: 'orange'
+  icon: 'download'
+  color: 'blue'
 
 runs:
   using: node12
   main: lib/main.js
-#  post: lib/post.js
-#  post-if: 'success()'

@@ -1,30 +1,45 @@
 import {Context} from '@actions/github/lib/context';
 import {Octokit} from '@technote-space/github-action-helper/dist/types';
-import {Command} from '@technote-space/github-action-helper';
 import {Logger} from '@technote-space/github-action-log-helper';
-import {getIssues} from './utils/issue';
-import {getPayload} from './utils/misc';
+import {getAnnotations} from './utils/annotation';
+import {filterByJobName, filterByLevel, filterByMessage} from './utils/filter';
+import {createFile} from './utils/io';
+import {convertAnnotationResult} from './utils/misc';
+import {
+  getWorkspace,
+  getFilename,
+  getResultFilename,
+  getMatchOptions,
+  getIncludeJobNamePatterns,
+  getExcludeJobNamePatterns,
+  getIncludeLevels,
+  getExcludeLevels,
+  getIncludeMessagePatterns,
+  getExcludeMessagePatterns,
+} from './utils/params';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<void> => {
-  logger.startProcess('Dump context');
-  console.log(getPayload(context));
+  logger.startProcess('Annotations:');
+  const annotations = await getAnnotations(octokit, context);
+  annotations.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
-  logger.startProcess('Command test');
-  const command = new Command(logger);
-  await command.execAsync({
-    command: 'ls -lat',
-  });
+  logger.startProcess('Filtered Annotations:');
+  const filtered = filterByMessage(
+    filterByLevel(
+      filterByJobName(
+        annotations,
+        getIncludeJobNamePatterns(),
+        getExcludeJobNamePatterns(),
+        getMatchOptions(),
+      ),
+      getIncludeLevels(),
+      getExcludeLevels(),
+    ),
+    getIncludeMessagePatterns(),
+    getExcludeMessagePatterns(),
+    getMatchOptions(),
+  );
+  filtered.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
-  logger.startProcess('Color text');
-  logger.info('green text: %s', logger.c('green', {color: 'red', attribute: 'bold'}));
-  logger.warn('warning!');
-  logger.error('error!!!');
-  logger.debug('debug...');
-  logger.log('log log log');
-
-  logger.startProcess('Get issues');
-  const issues = await getIssues(octokit, context);
-  console.log(issues.map(issue => issue.title));
-
-  logger.endProcess();
+  createFile(getWorkspace(), getFilename(), getResultFilename(), filtered, logger);
 };

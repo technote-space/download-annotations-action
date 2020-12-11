@@ -1,0 +1,38 @@
+[
+  {
+    "path": "README.md",
+    "start_line": 2,
+    "end_line": 2,
+    "start_column": 5,
+    "end_column": 10,
+    "annotation_level": "warning",
+    "title": "Warning test",
+    "message": "Warning test message",
+    "raw_details": "Warning test details",
+    "blob_href": "https://api.github.com/repos/github/rest-api-description/git/blobs/abc"
+  },
+  {
+    "path": "README.md",
+    "start_line": 2,
+    "end_line": 2,
+    "start_column": 5,
+    "end_column": 10,
+    "annotation_level": "failure",
+    "title": "Failure test",
+    "message": "Failure test message",
+    "raw_details": "Failure test details",
+    "blob_href": "https://api.github.com/repos/github/rest-api-description/git/blobs/abc"
+  },
+  {
+    "path": "README.md",
+    "start_line": 2,
+    "end_line": 2,
+    "start_column": 5,
+    "end_column": 10,
+    "annotation_level": "notice",
+    "title": "Notice test",
+    "message": "Notice test message",
+    "raw_details": "Notice test details",
+    "blob_href": "https://api.github.com/repos/github/rest-api-description/git/blobs/abc"
+  }
+]
