@@ -227,13 +227,32 @@ describe('filterByMessage', () => {
       {
         job: createJob('123'),
         annotations: [
-          createAnnotation('  >> warning jest > jest-cli > jest-config > jest-environment-jsdom > jsdom > request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142'),
           createAnnotation('test1'),
           createAnnotation('test2'),
           createAnnotation('abc'),
+          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
         ],
       },
-    ], [], ['test*', '*warning jest*'], {})).toEqual([
+    ], [], ['test*'], {})).toEqual([
+      {
+        job: createJob('123'),
+        annotations: [
+          createAnnotation('abc'),
+          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
+        ],
+      },
+    ]);
+    expect(filterByMessage([
+      {
+        job: createJob('123'),
+        annotations: [
+          createAnnotation('test1'),
+          createAnnotation('test2'),
+          createAnnotation('abc'),
+          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
+        ],
+      },
+    ], [], ['test*', '*slash*'], {})).toEqual([
       {
         job: createJob('123'),
         annotations: [
