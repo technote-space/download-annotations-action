@@ -22,8 +22,8 @@ jobs:
           INCLUDE_LEVELS: warning
       - name: Build attachments
         run: |
-          arr1='[{"color":"good","fields":[{"title":"repo","value":"<https://github.com/${{ github.repository }}|${{ github.repository }}>","short":true},{"title":"action","value":"<${{ github.event.workflow_run.html_url }}|action>","short":true}]}]'
-          arr2=$(echo '${{ steps.annotations.outputs.messages }}' | jq -c 'map({"color":"warning","text":.})')
+          arr1='[{"fields":[{"title":"repo","value":"<https://github.com/${{ github.repository }}|${{ github.repository }}>","short":true},{"title":"action","value":"<${{ github.event.workflow_run.html_url }}|action>","short":true}]}]'
+          arr2=$(echo '${{ steps.annotations.outputs.messages }}' | jq -c 'map({"color":"warning","text":"```\(.)```"})')
           echo "SLACK_ATTACHMENTS=$(jq --argjson arr1 "$arr1" --argjson arr2 "$arr2" -nc '$arr1 + $arr2')" >> $GITHUB_ENV
         if: steps.annotations.outputs.number > 0
       - uses: 8398a7/action-slack@v3
