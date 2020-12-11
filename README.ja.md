@@ -16,23 +16,13 @@ GitHub actions to download annotations.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
-- [Workflows](#workflows)
-  - [ci.yml](#ciyml)
-  - [add-version-tag.yml](#add-version-tagyml)
-  - [toc.yml](#tocyml)
-  - [issue-opened.yml](#issue-openedyml)
-  - [pr-opened.yml](#pr-openedyml)
-  - [pr-updated.yml](#pr-updatedyml)
-  - [project-card-moved.yml](#project-card-movedyml)
-  - [broken-link-check.yml](#broken-link-checkyml)
-  - [update-dependencies.yml](#update-dependenciesyml)
-  - [add-test-tag.yml](#add-test-tagyml)
-  - [Secrets](#secrets)
-- [Test release](#test-release)
-- [Helpers](#helpers)
+- [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
+- [Options](#options)
+- [Outputs](#outputs)
+  - [number](#number)
+  - [messages](#messages)
+  - [path](#path)
+  - [result_path](#result_path)
 - [Author](#author)
 
 </details>
