@@ -16,7 +16,7 @@ GitHub actions to download annotations.
 <details>
 <summary>Details</summary>
 
-- [Usage](#usage)
+- [使用方法](#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95)
 - [Options](#options)
 - [Outputs](#outputs)
   - [number](#number)
@@ -28,8 +28,8 @@ GitHub actions to download annotations.
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Usage
-e.g. `.github/workflows/check-warnings.yml`  
+## 使用方法
+例：`.github/workflows/check-warnings.yml`  
 ```yaml
 on:
   workflow_run:
@@ -79,13 +79,13 @@ jobs:
 ![result](https://raw.githubusercontent.com/technote-space/download-annotations-action/images/slack.png)
 
 ## Options
-Please see [actions.yml](./action.yml)
+詳細は [actions.yml](./action.yml)
 
 ## Outputs
 ### number
-Number of annotations
+annotation の数
 
-e.g.
+例：
 ```shell script
 echo ${{ steps.annotations.outputs.messages }}
 ```
@@ -95,9 +95,9 @@ echo ${{ steps.annotations.outputs.messages }}
 ```
 
 ### messages
-All messages of annotations
+すべての annotation のメッセージ
 
-e.g.
+例：
 ```shell script
 echo '${{ steps.annotations.outputs.number }}' | jq
 ```
@@ -111,9 +111,9 @@ echo '${{ steps.annotations.outputs.number }}' | jq
 ```
 
 ### path
-Annotations file path
+annotation のファイルパス
 
-e.g.
+例：
 ```json
 [
     {
@@ -156,9 +156,9 @@ e.g.
 ```
 
 ### result_path
-Result file path
+結果のファイルパス
 
-e.g.
+例：
 ```json
 [
     {
