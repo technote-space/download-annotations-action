@@ -274,7 +274,7 @@ jobs:
         if: steps.annotations.outputs.number > 0
       - uses: 8398a7/action-slack@v3
         with:
-          status: succeed
+          status: success
           custom_payload: |
             {
               text: "Warning annotations",
