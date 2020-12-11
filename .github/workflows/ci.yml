@@ -265,12 +265,13 @@ jobs:
         with:
           ref: gh-actions
       - name: Download Annotations
+        id: annotations
         uses: ./
         with:
           INCLUDE_LEVELS: warning
       - name: Build attachments
-        run: echo "SLACK_ATTACHMENTS=$(echo "${ANNOTATION_MESSAGES}" | jq -R -s 'split("\n") | map(select(length > 0)) | map({"color":"warning","text":.})')" >> $GITHUB_ENV
-        if: env.ANNOTATIONS_NUMBER > 0
+        run: echo "SLACK_ATTACHMENTS=$(echo "${{ steps.annotations.outputs.messages }}" | jq 'map({"color":"warning","text":.})')" >> $GITHUB_ENV
+        if: steps.annotations.outputs.number > 0
       - uses: 8398a7/action-slack@v3
         with:
           status: succeed
@@ -281,7 +282,7 @@ jobs:
             }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: env.ANNOTATIONS_NUMBER > 0 && env.SLACK_WEBHOOK_URL
+        if: steps.annotations.outputs.number > 0 && env.SLACK_WEBHOOK_URL
 
   slack:
     name: Slack
