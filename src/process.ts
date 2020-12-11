@@ -21,7 +21,7 @@ import {
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<void> => {
   logger.startProcess('Annotations:');
   const annotations = await getAnnotations(octokit, context);
-  console.log(annotations.map(convertAnnotationResult));
+  annotations.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
   logger.startProcess('Filtered Annotations:');
   const filtered = filterByMessage(
@@ -39,7 +39,7 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
     getExcludeMessagePatterns(),
     getMatchOptions(),
   );
-  console.log(filtered.map(convertAnnotationResult));
+  filtered.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
   createFile(getWorkspace(), getFilename(), getResultFilename(), filtered, logger);
 };

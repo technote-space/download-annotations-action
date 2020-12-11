@@ -98,132 +98,128 @@ describe('execute', () => {
     ];
     stdoutCalledWith(mockStdout, [
       '::group::Annotations:',
-      getLogStdout([
-        {
-          job: {
-            'id': 1511906976,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'ESLint',
-          },
-          annotations: annotations1,
+      getLogStdout({
+        job: {
+          'id': 1511906976,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'ESLint',
         },
-        {
-          'job': {
-            'id': 1511909554,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Coverage (ubuntu-16.04)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511909554,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Coverage (ubuntu-16.04)',
         },
-        {
-          'job': {
-            'id': 1511909597,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Coverage (ubuntu-latest)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511909597,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Coverage (ubuntu-latest)',
         },
-        {
-          'job': {
-            'id': 1511909628,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Coverage (ubuntu-20.04)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511909628,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Coverage (ubuntu-20.04)',
         },
-        {
-          'job': {
-            'id': 1511909659,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Coverage (macos-latest)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511909659,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Coverage (macos-latest)',
         },
-        {
-          'job': {
-            'id': 1511919468,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Publish Package (npm)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511919468,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Publish Package (npm)',
         },
-        {
-          'job': {
-            'id': 1511919497,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Publish Package (gpr)',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511919497,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Publish Package (gpr)',
         },
-        {
-          'job': {
-            'id': 1511919569,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Release GitHub Actions',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511919569,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Release GitHub Actions',
         },
-        {
-          'job': {
-            'id': 1511925593,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Create Release',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511925593,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Create Release',
         },
-        {
-          'job': {
-            'id': 1511927174,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Slack',
-          },
-          annotations: annotations1,
+        annotations: annotations1,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511927174,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Slack',
         },
-      ]),
+        annotations: annotations1,
+      }),
       '::endgroup::',
       '::group::Filtered Annotations:',
-      getLogStdout([
-        {
-          'job': {
-            'id': 1511919468,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Publish Package (npm)',
-          },
-          annotations: annotations2,
+      getLogStdout({
+        'job': {
+          'id': 1511919468,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Publish Package (npm)',
         },
-        {
-          'job': {
-            'id': 1511919497,
-            'run_id': 406257557,
-            'status': 'completed',
-            'conclusion': 'success',
-            'name': 'Publish Package (gpr)',
-          },
-          annotations: annotations2,
+        annotations: annotations2,
+      }),
+      getLogStdout({
+        'job': {
+          'id': 1511919497,
+          'run_id': 406257557,
+          'status': 'completed',
+          'conclusion': 'success',
+          'name': 'Publish Package (gpr)',
         },
-      ]),
+        annotations: annotations2,
+      }),
       '::endgroup::',
       '::group::path:',
       `"${rootDir}/\${{ github.workspace }}/annotations.json"`,
