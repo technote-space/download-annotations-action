@@ -270,7 +270,7 @@ jobs:
         with:
           INCLUDE_LEVELS: warning
       - name: Build attachments
-        run: echo "SLACK_ATTACHMENTS=$(echo "${{ steps.annotations.outputs.messages }}" | jq 'map({"color":"warning","text":.})')" >> $GITHUB_ENV
+        run: echo "SLACK_ATTACHMENTS=$(echo '${{ steps.annotations.outputs.messages }}' | jq 'map({"color":"warning","text":.})')" >> $GITHUB_ENV
         if: steps.annotations.outputs.number > 0
       - uses: 8398a7/action-slack@v3
         with:
