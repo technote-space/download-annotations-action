@@ -1,53 +1,21 @@
 /* eslint-disable no-magic-numbers */
 import {testEnv, generateContext} from '@technote-space/github-action-test-helper';
 import {
-  getMatchOptions,
   getTargetRunId,
   getWorkspace,
   getFilename,
   getResultFilename,
   getIncludeJobNamePatterns,
   getExcludeJobNamePatterns,
+  getIncludeJobNamePatternFlags,
+  getExcludeJobNamePatternFlags,
   getIncludeLevels,
   getExcludeLevels,
   getIncludeMessagePatterns,
   getExcludeMessagePatterns,
+  getIncludeMessagePatternFlags,
+  getExcludeMessagePatternFlags,
 } from '../../src/utils/params';
-
-describe('getMatchOptions', () => {
-  testEnv();
-
-  it('should return default match options', () => {
-    expect(getMatchOptions()).toEqual({
-      nobrace: false,
-      noglobstar: false,
-      dot: false,
-      noext: false,
-      nocase: false,
-      matchBase: false,
-      nonegate: false,
-    });
-  });
-
-  it('should return match options', () => {
-    process.env.INPUT_MINIMATCH_OPTION_NOBRACE    = '1';
-    process.env.INPUT_MINIMATCH_OPTION_NOGLOBSTAR = 'true';
-    process.env.INPUT_MINIMATCH_OPTION_DOT        = 'a';
-    process.env.INPUT_MINIMATCH_OPTION_NOEXT      = '1';
-    process.env.INPUT_MINIMATCH_OPTION_NOCASE     = '1';
-    process.env.INPUT_MINIMATCH_OPTION_MATCH_BASE = '1';
-    process.env.INPUT_MINIMATCH_OPTION_NONEGATE   = '1';
-    expect(getMatchOptions()).toEqual({
-      nobrace: true,
-      noglobstar: true,
-      dot: true,
-      noext: true,
-      nocase: true,
-      matchBase: true,
-      nonegate: true,
-    });
-  });
-});
 
 describe('getTargetRunId', () => {
   testEnv();
@@ -131,6 +99,32 @@ describe('getExcludeJobNamePatterns', () => {
   });
 });
 
+describe('getIncludeJobNamePatternFlags', () => {
+  testEnv();
+
+  it('should get default include job name pattern flags', () => {
+    expect(getIncludeJobNamePatternFlags()).toBe('');
+  });
+
+  it('should get include job name pattern flags', () => {
+    process.env.INPUT_INCLUDE_JOB_NAME_PATTERN_FLAGS = 'i';
+    expect(getIncludeJobNamePatternFlags()).toBe('i');
+  });
+});
+
+describe('getExcludeJobNamePatternFlags', () => {
+  testEnv();
+
+  it('should get default exclude job name pattern flags', () => {
+    expect(getExcludeJobNamePatternFlags()).toBe('');
+  });
+
+  it('should get exclude job name pattern flags', () => {
+    process.env.INPUT_EXCLUDE_JOB_NAME_PATTERN_FLAGS = 'i';
+    expect(getExcludeJobNamePatternFlags()).toBe('i');
+  });
+});
+
 describe('getIncludeLevels', () => {
   testEnv();
 
@@ -180,5 +174,31 @@ describe('getExcludeMessagePatterns', () => {
   it('should get exclude message patterns', () => {
     process.env.INPUT_EXCLUDE_MESSAGE_PATTERNS = 'test1, test2\ntest3';
     expect(getExcludeMessagePatterns()).toEqual(['test1', 'test2', 'test3']);
+  });
+});
+
+describe('getIncludeMessagePatternFlags', () => {
+  testEnv();
+
+  it('should get default include message pattern flags', () => {
+    expect(getIncludeMessagePatternFlags()).toBe('');
+  });
+
+  it('should get include message pattern flags', () => {
+    process.env.INPUT_INCLUDE_MESSAGE_PATTERN_FLAGS = 'i';
+    expect(getIncludeMessagePatternFlags()).toBe('i');
+  });
+});
+
+describe('getExcludeMessagePatternFlags', () => {
+  testEnv();
+
+  it('should get default exclude message pattern flags', () => {
+    expect(getExcludeMessagePatternFlags()).toBe('');
+  });
+
+  it('should get exclude message pattern flags', () => {
+    process.env.INPUT_EXCLUDE_MESSAGE_PATTERN_FLAGS = 'i';
+    expect(getExcludeMessagePatternFlags()).toBe('i');
   });
 });

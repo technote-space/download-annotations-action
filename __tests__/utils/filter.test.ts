@@ -32,39 +32,39 @@ const createAnnotation = (message: string, level: 'warning' | 'notice' | 'failur
 
 describe('filterByJobName', () => {
   it('should filter by job id', () => {
-    expect(filterByJobName([], [], [], {})).toEqual([]);
+    expect(filterByJobName([], [], [])).toEqual([]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
-    ], [], [], {})).toEqual([
+    ], [], [])).toEqual([
       {job: createJob('123'), annotations: []},
     ]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
-    ], ['123', '456'], [], {})).toEqual([
+    ], ['123', '456'], [])).toEqual([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
     ]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
-    ], ['123'], [], {})).toEqual([
+    ], ['123'], [])).toEqual([
       {job: createJob('123'), annotations: []},
     ]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
-    ], ['123'], ['123'], {})).toEqual([]);
+    ], ['123'], ['123'])).toEqual([]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
-    ], [], ['123'], {})).toEqual([
+    ], [], ['123'])).toEqual([
       {job: createJob('456'), annotations: []},
     ]);
     expect(filterByJobName([
       {job: createJob('123'), annotations: []},
       {job: createJob('456'), annotations: []},
-    ], [], ['123', '456'], {})).toEqual([]);
+    ], [], ['123', '456'])).toEqual([]);
   });
 });
 
@@ -166,10 +166,10 @@ describe('filterByLevel', () => {
 
 describe('filterByMessage', () => {
   it('should filter by message', () => {
-    expect(filterByMessage([], [], [], {})).toEqual([]);
+    expect(filterByMessage([], [], [])).toEqual([]);
     expect(filterByMessage([
       {job: createJob('123'), annotations: []},
-    ], [], [], {})).toEqual([
+    ], [], [])).toEqual([
       {job: createJob('123'), annotations: []},
     ]);
     expect(filterByMessage([
@@ -182,7 +182,7 @@ describe('filterByMessage', () => {
           createAnnotation(''),
         ],
       },
-    ], ['test'], [], {})).toEqual([
+    ], ['TEST'], [])).toEqual([
       {
         job: createJob('123'),
         annotations: [],
@@ -197,7 +197,7 @@ describe('filterByMessage', () => {
           createAnnotation('abc'),
         ],
       },
-    ], ['test*'], [], {})).toEqual([
+    ], ['TEST\\d+'], [], 'i')).toEqual([
       {
         job: createJob('123'),
         annotations: [
@@ -215,30 +215,11 @@ describe('filterByMessage', () => {
           createAnnotation('abc'),
         ],
       },
-    ], ['test*'], ['test1'], {})).toEqual([
+    ], ['test'], ['test1'])).toEqual([
       {
         job: createJob('123'),
         annotations: [
           createAnnotation('test2'),
-        ],
-      },
-    ]);
-    expect(filterByMessage([
-      {
-        job: createJob('123'),
-        annotations: [
-          createAnnotation('test1'),
-          createAnnotation('test2'),
-          createAnnotation('abc'),
-          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
-        ],
-      },
-    ], [], ['test*'], {})).toEqual([
-      {
-        job: createJob('123'),
-        annotations: [
-          createAnnotation('abc'),
-          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
         ],
       },
     ]);
@@ -252,7 +233,7 @@ describe('filterByMessage', () => {
           createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
         ],
       },
-    ], [], ['test*', '*slash*'], {})).toEqual([
+    ], [], ['test.+'])).toEqual([
       {
         job: createJob('123'),
         annotations: [
@@ -266,10 +247,28 @@ describe('filterByMessage', () => {
         annotations: [
           createAnnotation('test1'),
           createAnnotation('test2'),
-          createAnnotation('abc'),
+          createAnnotation('ABC'),
+          createAnnotation(' !"#$%&\'()=~|-^¥`{*}+<>?@[;:],./_ test/slash '),
         ],
       },
-    ], [], ['test*', 'abc'], {})).toEqual([
+    ], [], ['test\\d+', 'test/slash', 'abc'])).toEqual([
+      {
+        job: createJob('123'),
+        annotations: [
+          createAnnotation('ABC'),
+        ],
+      },
+    ]);
+    expect(filterByMessage([
+      {
+        job: createJob('123'),
+        annotations: [
+          createAnnotation('test1'),
+          createAnnotation('test2'),
+          createAnnotation('ABC'),
+        ],
+      },
+    ], [], ['test', 'abc'], undefined, 'i')).toEqual([
       {
         job: createJob('123'),
         annotations: [],
