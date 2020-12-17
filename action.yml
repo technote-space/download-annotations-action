@@ -30,8 +30,14 @@ inputs:
   INCLUDE_JOB_NAME_PATTERNS:
     description: Include job name patterns.
     required: false
+  INCLUDE_JOB_NAME_PATTERN_FLAGS:
+    description: Include job name pattern flags.
+    required: false
   EXCLUDE_JOB_NAME_PATTERNS:
     description: Exclude job name patterns.
+    required: false
+  EXCLUDE_JOB_NAME_PATTERN_FLAGS:
+    description: Exclude job name pattern flags.
     required: false
 
   INCLUDE_LEVELS:
@@ -44,29 +50,14 @@ inputs:
   INCLUDE_MESSAGE_PATTERNS:
     description: Include message patterns.
     required: false
+  INCLUDE_MESSAGE_PATTERN_FLAGS:
+    description: Include message pattern flags.
+    required: false
   EXCLUDE_MESSAGE_PATTERNS:
     description: Exclude message patterns.
     required: false
-  MINIMATCH_OPTION_NOBRACE:
-    description: https://github.com/isaacs/minimatch#nobrace
-    required: false
-  MINIMATCH_OPTION_NOGLOBSTAR:
-    description: https://github.com/isaacs/minimatch#noglobstar
-    required: false
-  MINIMATCH_OPTION_DOT:
-    description: https://github.com/isaacs/minimatch#dot
-    required: false
-  MINIMATCH_OPTION_NOEXT:
-    description: https://github.com/isaacs/minimatch#noext
-    required: false
-  MINIMATCH_OPTION_NOCASE:
-    description: https://github.com/isaacs/minimatch#nocase
-    required: false
-  MINIMATCH_OPTION_MATCH_BASE:
-    description: https://github.com/isaacs/minimatch#matchbase
-    required: false
-  MINIMATCH_OPTION_NONEGATE:
-    description: https://github.com/isaacs/minimatch#nonegate
+  EXCLUDE_MESSAGE_PATTERN_FLAGS:
+    description: Exclude message pattern flags.
     required: false
 
 outputs:

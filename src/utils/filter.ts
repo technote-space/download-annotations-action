@@ -1,18 +1,17 @@
-import multimatch, {Options} from 'multimatch';
 import {Utils} from '@technote-space/github-action-helper';
 import {Annotations} from '../types';
 
-const escapeSlashes = (value: string): string => value.replace(/\//g, '&#x2F;');
-const isMatched = (value: string | null, includePatterns: Array<string>, excludePatterns: Array<string>, options: Options): boolean => {
+const multimatch = (value: string, patterns: Array<string>, flags?: string): boolean => patterns.some(pattern => new RegExp(pattern, flags).test(value));
+const isMatched  = (value: string | null, includePatterns: Array<string>, excludePatterns: Array<string>, includePatternFlags?: string, excludePatternFlags?: string): boolean => {
   if (!value) {
     return !includePatterns.length;
   }
 
-  return (!includePatterns.length || !!multimatch(escapeSlashes(value), includePatterns, options).length) && (!excludePatterns.length || !multimatch(escapeSlashes(value), excludePatterns, options).length);
+  return (!includePatterns.length || multimatch(value, includePatterns, includePatternFlags)) && (!excludePatterns.length || !multimatch(value, excludePatterns, excludePatternFlags));
 };
 
-export const filterByJobName = (annotations: Annotations, includePatterns: Array<string>, excludePatterns: Array<string>, options: Options): Annotations => annotations.filter(
-  annotation => isMatched(annotation.job.name, includePatterns, excludePatterns, options),
+export const filterByJobName = (annotations: Annotations, includePatterns: Array<string>, excludePatterns: Array<string>, includePatternFlags?: string, excludePatternFlags?: string): Annotations => annotations.filter(
+  annotation => isMatched(annotation.job.name, includePatterns, excludePatterns, includePatternFlags, excludePatternFlags),
 );
 
 export const filterByLevel = (annotations: Annotations, includeLevels: Array<string>, excludeLevels: Array<string>): Annotations => annotations.map(
@@ -22,11 +21,11 @@ export const filterByLevel = (annotations: Annotations, includeLevels: Array<str
   }),
 );
 
-export const filterByMessage = (annotations: Annotations, includePatterns: Array<string>, excludePatterns: Array<string>, options: Options): Annotations => {
+export const filterByMessage = (annotations: Annotations, includePatterns: Array<string>, excludePatterns: Array<string>, includePatternFlags?: string, excludePatternFlags?: string): Annotations => {
   return annotations.map(
     annotation => ({
       job: annotation.job,
-      annotations: annotation.annotations.filter(annotation => isMatched(annotation.message, includePatterns, excludePatterns, options)),
+      annotations: annotation.annotations.filter(annotation => isMatched(annotation.message, includePatterns, excludePatterns, includePatternFlags, excludePatternFlags)),
     }),
   );
 };

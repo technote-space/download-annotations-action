@@ -9,13 +9,16 @@ import {
   getWorkspace,
   getFilename,
   getResultFilename,
-  getMatchOptions,
   getIncludeJobNamePatterns,
   getExcludeJobNamePatterns,
+  getIncludeJobNamePatternFlags,
+  getExcludeJobNamePatternFlags,
   getIncludeLevels,
   getExcludeLevels,
   getIncludeMessagePatterns,
   getExcludeMessagePatterns,
+  getIncludeMessagePatternFlags,
+  getExcludeMessagePatternFlags,
 } from './utils/params';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<void> => {
@@ -30,14 +33,16 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
         annotations,
         getIncludeJobNamePatterns(),
         getExcludeJobNamePatterns(),
-        getMatchOptions(),
+        getIncludeJobNamePatternFlags(),
+        getExcludeJobNamePatternFlags(),
       ),
       getIncludeLevels(),
       getExcludeLevels(),
     ),
     getIncludeMessagePatterns(),
     getExcludeMessagePatterns(),
-    getMatchOptions(),
+    getIncludeMessagePatternFlags(),
+    getExcludeMessagePatternFlags(),
   );
   filtered.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
