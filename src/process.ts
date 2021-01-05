@@ -22,6 +22,21 @@ import {
 } from './utils/params';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<void> => {
+  const settings = {
+    includeJobNamePatterns: getIncludeJobNamePatterns(),
+    excludeJobNamePatterns: getExcludeJobNamePatterns(),
+    includeJobNamePatternFlags: getIncludeJobNamePatternFlags(),
+    excludeJobNamePatternFlags: getExcludeJobNamePatternFlags(),
+    includeLevels: getIncludeLevels(),
+    excludeLevels: getExcludeLevels(),
+    includeMessagePatterns: getIncludeMessagePatterns(),
+    excludeMessagePatterns: getExcludeMessagePatterns(),
+    includeMessagePatternFlags: getIncludeMessagePatternFlags(),
+    excludeMessagePatternFlags: getExcludeMessagePatternFlags(),
+  };
+  logger.startProcess('Settings:');
+  console.log(settings);
+
   logger.startProcess('Annotations:');
   const annotations = await getAnnotations(octokit, context);
   annotations.forEach(annotation => console.log(convertAnnotationResult(annotation)));
@@ -31,18 +46,18 @@ export const execute = async(logger: Logger, octokit: Octokit, context: Context)
     filterByLevel(
       filterByJobName(
         annotations,
-        getIncludeJobNamePatterns(),
-        getExcludeJobNamePatterns(),
-        getIncludeJobNamePatternFlags(),
-        getExcludeJobNamePatternFlags(),
+        settings.includeJobNamePatterns,
+        settings.excludeJobNamePatterns,
+        settings.includeJobNamePatternFlags,
+        settings.excludeJobNamePatternFlags,
       ),
-      getIncludeLevels(),
-      getExcludeLevels(),
+      settings.includeLevels,
+      settings.excludeLevels,
     ),
-    getIncludeMessagePatterns(),
-    getExcludeMessagePatterns(),
-    getIncludeMessagePatternFlags(),
-    getExcludeMessagePatternFlags(),
+    settings.includeMessagePatterns,
+    settings.excludeMessagePatterns,
+    settings.includeMessagePatternFlags,
+    settings.excludeMessagePatternFlags,
   );
   filtered.forEach(annotation => console.log(convertAnnotationResult(annotation)));
 
