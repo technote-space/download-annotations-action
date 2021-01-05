@@ -274,5 +274,21 @@ describe('filterByMessage', () => {
         annotations: [],
       },
     ]);
+    expect(filterByMessage([
+      {
+        job: createJob('123'),
+        annotations: [
+          createAnnotation('>> warning " > @octokit/plugin-paginate-rest@2.6.2" has unmet peer dependency "@octokit/core@>=2".'),
+          createAnnotation('>> warning " > react-autosize-textarea@7.1.0" has incorrect peer dependency "react@^0.14.0 || ^15.0.0 || ^16.0.0".'),
+          createAnnotation('>> warning jest > jest-cli > jest-config > jest-environment-jsdom > jsdom > request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142'),
+          createAnnotation('>> Cloning into .github/workflows/.tmp/workflows...'),
+        ],
+      },
+    ], [], ['warning', 'Cloning into'], undefined)).toEqual([
+      {
+        job: createJob('123'),
+        annotations: [],
+      },
+    ]);
   });
 });

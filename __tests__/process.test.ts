@@ -27,6 +27,7 @@ describe('execute', () => {
   it('should execute', async() => {
     process.env.INPUT_INCLUDE_JOB_NAME_PATTERNS = 'Publish*';
     process.env.INPUT_INCLUDE_LEVELS            = 'warning';
+    process.env.INPUT_EXCLUDE_MESSAGE_PATTERNS  = 'warning\nCloning into';
 
     const writeFileSyncFn = jest.fn();
     jest.spyOn(fs, 'existsSync').mockImplementation(() => true);
@@ -52,9 +53,33 @@ describe('execute', () => {
         'start_column': 5,
         'end_column': 10,
         'annotation_level': 'warning',
-        'title': 'Warning test',
-        'message': 'Warning test message',
-        'raw_details': 'Warning test details',
+        'title': 'Warning test1',
+        'message': 'Warning test1 message',
+        'raw_details': 'Warning test1 details',
+        'blob_href': 'https://api.github.com/repos/github/rest-api-description/git/blobs/abc',
+      },
+      {
+        'path': 'README.md',
+        'start_line': 2,
+        'end_line': 2,
+        'start_column': 5,
+        'end_column': 10,
+        'annotation_level': 'warning',
+        'title': 'Warning test2',
+        'message': '  >> Cloning into \'.github/workflows/.tmp/workflows\'...',
+        'raw_details': 'Warning test2 details',
+        'blob_href': 'https://api.github.com/repos/github/rest-api-description/git/blobs/abc',
+      },
+      {
+        'path': 'README.md',
+        'start_line': 2,
+        'end_line': 2,
+        'start_column': 5,
+        'end_column': 10,
+        'annotation_level': 'warning',
+        'title': 'Warning test3',
+        'message': '  >> warning " > @octokit/plugin-paginate-rest@2.6.2" has unmet peer dependency "@octokit/core@>=2".',
+        'raw_details': 'Warning test3 details',
         'blob_href': 'https://api.github.com/repos/github/rest-api-description/git/blobs/abc',
       },
       {
@@ -90,13 +115,27 @@ describe('execute', () => {
         'start_column': 5,
         'end_column': 10,
         'annotation_level': 'warning',
-        'title': 'Warning test',
-        'message': 'Warning test message',
-        'raw_details': 'Warning test details',
+        'title': 'Warning test1',
+        'message': 'Warning test1 message',
+        'raw_details': 'Warning test1 details',
         'blob_href': 'https://api.github.com/repos/github/rest-api-description/git/blobs/abc',
       },
     ];
     stdoutCalledWith(mockStdout, [
+      '::group::Settings:',
+      getLogStdout({
+        includeJobNamePatterns: ['Publish*'],
+        excludeJobNamePatterns: [],
+        includeJobNamePatternFlags: '',
+        excludeJobNamePatternFlags: '',
+        includeLevels: ['warning'],
+        excludeLevels: [],
+        includeMessagePatterns: [],
+        excludeMessagePatterns: ['warning', 'Cloning into'],
+        includeMessagePatternFlags: '',
+        excludeMessagePatternFlags: '',
+      }),
+      '::endgroup::',
       '::group::Annotations:',
       getLogStdout({
         job: {
@@ -234,8 +273,8 @@ describe('execute', () => {
       '::set-output name=number::2',
       '::endgroup::',
       '::group::messages:',
-      '"[\\"Warning test message\\",\\"Warning test message\\"]"',
-      '::set-output name=messages::["Warning test message","Warning test message"]',
+      '"[\\"Warning test1 message\\",\\"Warning test1 message\\"]"',
+      '::set-output name=messages::["Warning test1 message","Warning test1 message"]',
     ]);
 
     expect(writeFileSyncFn).toBeCalledTimes(2);
