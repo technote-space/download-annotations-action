@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/download-annotations-action",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "GitHub actions to download annotations.",
   "keywords": [
     "github",
