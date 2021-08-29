@@ -1,9 +1,9 @@
 # Download Annotations Action
 
 [![CI Status](https://github.com/technote-space/download-annotations-action/workflows/CI/badge.svg)](https://github.com/technote-space/download-annotations-action/actions)
-[![codecov](https://codecov.io/gh/technote-space/download-annotations-action/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/download-annotations-action)
+[![codecov](https://codecov.io/gh/technote-space/download-annotations-action/branch/main/graph/badge.svg)](https://codecov.io/gh/technote-space/download-annotations-action)
 [![CodeFactor](https://www.codefactor.io/repository/github/technote-space/download-annotations-action/badge)](https://www.codefactor.io/repository/github/technote-space/download-annotations-action)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/download-annotations-action/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/download-annotations-action/blob/main/LICENSE)
 
 *Read this in other languages: [English](README.md), [日本語](README.ja.md).*
 
