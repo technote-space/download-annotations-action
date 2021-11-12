@@ -16,6 +16,11 @@ const createJob        = (name: string): JobData => ({
   'completed_at': '',
   name,
   'check_run_url': '',
+  labels: [],
+  'runner_id': null,
+  'runner_name': null,
+  'runner_group_id': null,
+  'runner_group_name': null,
 });
 const createAnnotation = (message: string, level: 'warning' | 'notice' | 'failure' = 'warning'): AnnotationData => ({
   'path': 'README.md',
