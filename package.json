@@ -33,7 +33,8 @@
     "prepublishOnly": "[ -n \"$CI\" ] || [ ! -f node_modules/.bin/pinst ] || pinst --disable",
     "postpublish": "[ -n \"$CI\" ] || [ ! -f node_modules/.bin/pinst ] || pinst --enable",
     "release": "yarn release-ga --test",
-    "test": "yarn lint && yarn cover",
+    "test": "yarn lint && yarn typecheck && yarn cover",
+    "typecheck": "tsc --noEmit",
     "update": "npm_config_yes=true npx npm-check-updates -u --timeout 100000 && yarn install && yarn upgrade && yarn audit"
   },
   "dependencies": {
