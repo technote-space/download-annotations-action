@@ -1,5 +1,5 @@
-import {Utils} from '@technote-space/github-action-helper';
-import {Annotations} from '../types';
+import { Utils } from '@technote-space/github-action-helper';
+import { Annotations } from '../types';
 
 const multimatch = (value: string, patterns: Array<string>, flags?: string): boolean => patterns.some(pattern => new RegExp(pattern, flags).test(value));
 const isMatched  = (value: string | null, includePatterns: Array<string>, excludePatterns: Array<string>, includePatternFlags?: string, excludePatternFlags?: string): boolean => {

@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers */
-import {filterByJobName, filterByLevel, filterByMessage} from '../../src/utils/filter';
-import {AnnotationData, JobData} from '../../src/types';
+import { describe, expect, it } from 'vitest';
+import { filterByJobName, filterByLevel, filterByMessage } from './filter';
+import { AnnotationData, JobData } from '../types';
 
 const createJob        = (name: string): JobData => ({
   'id': 123,
@@ -39,36 +40,36 @@ describe('filterByJobName', () => {
   it('should filter by job id', () => {
     expect(filterByJobName([], [], [])).toEqual([]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ], [], [])).toEqual([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ], ['123', '456'], [])).toEqual([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ], ['123'], [])).toEqual([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ], ['123'], ['123'])).toEqual([]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ], [], ['123'])).toEqual([
-      {job: createJob('456'), annotations: []},
+      { job: createJob('456'), annotations: [] },
     ]);
     expect(filterByJobName([
-      {job: createJob('123'), annotations: []},
-      {job: createJob('456'), annotations: []},
+      { job: createJob('123'), annotations: [] },
+      { job: createJob('456'), annotations: [] },
     ], [], ['123', '456'])).toEqual([]);
   });
 });
@@ -77,9 +78,9 @@ describe('filterByLevel', () => {
   it('should filter by level', () => {
     expect(filterByLevel([], [], [])).toEqual([]);
     expect(filterByLevel([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ], [], [])).toEqual([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ]);
     expect(filterByLevel([
       {
@@ -173,9 +174,9 @@ describe('filterByMessage', () => {
   it('should filter by message', () => {
     expect(filterByMessage([], [], [])).toEqual([]);
     expect(filterByMessage([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ], [], [])).toEqual([
-      {job: createJob('123'), annotations: []},
+      { job: createJob('123'), annotations: [] },
     ]);
     expect(filterByMessage([
       {

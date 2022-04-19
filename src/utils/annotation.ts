@@ -1,7 +1,7 @@
-import {Context} from '@actions/github/lib/context';
-import {Octokit} from '@technote-space/github-action-helper/dist/types';
-import {getTargetRunId} from './params';
-import {Annotations} from '../types';
+import { Context } from '@actions/github/lib/context';
+import { Octokit } from '@technote-space/github-action-helper/dist/types';
+import { getTargetRunId } from './params';
+import { Annotations } from '../types';
 
 export const getAnnotations = async(octokit: Octokit, context: Context): Promise<Annotations> => {
   const workflowJobs = await octokit.paginate(

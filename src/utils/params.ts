@@ -1,6 +1,6 @@
-import {getInput} from '@actions/core' ;
-import {Utils} from '@technote-space/github-action-helper';
-import {Context} from '@actions/github/lib/context';
+import { getInput } from '@actions/core' ;
+import { Utils } from '@technote-space/github-action-helper';
+import { Context } from '@actions/github/lib/context';
 
 export const getTargetRunId                = (context: Context): number => /^\d+$/.test(getInput('TARGET_RUN_ID')) ? Number(getInput('TARGET_RUN_ID')) : context.runId;
 export const getWorkspace                  = (): string => getInput('WORKSPACE');

@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers */
+import { describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
-import {resolve} from 'path';
+import { resolve } from 'path';
 import nock from 'nock';
 import {
   testEnv,
@@ -12,10 +13,10 @@ import {
   disableNetConnect,
   getApiFixture,
 } from '@technote-space/github-action-test-helper';
-import {Logger} from '@technote-space/github-action-log-helper';
-import {execute} from '../src/process';
+import { Logger } from '@technote-space/github-action-log-helper';
+import { execute } from './process';
 
-jest.mock('fs');
+vi.mock('fs');
 
 const rootDir     = resolve(__dirname, '..');
 const fixturesDir = resolve(__dirname, 'fixtures');
@@ -29,9 +30,9 @@ describe('execute', () => {
     process.env.INPUT_INCLUDE_LEVELS            = 'warning';
     process.env.INPUT_EXCLUDE_MESSAGE_PATTERNS  = 'warning\nCloning into';
 
-    const writeFileSyncFn = jest.fn();
-    jest.spyOn(fs, 'existsSync').mockImplementation(() => true);
-    jest.spyOn(fs, 'writeFileSync').mockImplementation(writeFileSyncFn);
+    const writeFileSyncFn = vi.fn();
+    vi.spyOn(fs, 'existsSync').mockImplementation(() => true);
+    vi.spyOn(fs, 'writeFileSync').mockImplementation(writeFileSyncFn);
 
     const mockStdout = spyOnStdout();
     nock('https://api.github.com')
@@ -41,7 +42,7 @@ describe('execute', () => {
       .get(/repos\/hello\/world\/check-runs\/\d+\/annotations/)
       .reply(200, () => getApiFixture(fixturesDir, 'annotations'));
 
-    await execute(new Logger(), getOctokit(), generateContext({owner: 'hello', repo: 'world'}, {
+    await execute(new Logger(), getOctokit(), generateContext({ owner: 'hello', repo: 'world' }, {
       runId: 123,
     }));
 
