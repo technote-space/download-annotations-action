@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers */
-import {resolve} from 'path';
-import nock from 'nock';
+import { resolve } from 'path';
 import {
   testEnv,
   getOctokit,
@@ -8,7 +7,9 @@ import {
   generateContext,
   getApiFixture,
 } from '@technote-space/github-action-test-helper';
-import {getAnnotations} from '../../src/utils/annotation';
+import nock from 'nock';
+import { describe, expect, it } from 'vitest';
+import { getAnnotations } from './annotation';
 
 const rootDir     = resolve(__dirname, '../..');
 const fixturesDir = resolve(__dirname, '..', 'fixtures');
@@ -25,13 +26,13 @@ describe('getAnnotations', () => {
       .get(/repos\/hello\/world\/check-runs\/\d+\/annotations/)
       .reply(200, () => getApiFixture(fixturesDir, 'annotations'));
 
-    const annotations = await getAnnotations(getOctokit(), generateContext({owner: 'hello', repo: 'world'}, {
+    const annotations = await getAnnotations(getOctokit(), generateContext({ owner: 'hello', repo: 'world' }, {
       runId: 123,
     }));
 
     expect(annotations).toHaveLength(10);
     expect(annotations[0]).toHaveProperty('job');
     expect(annotations[0]).toHaveProperty('annotations');
-    expect(annotations[0].annotations).toHaveLength(5);
+    expect(annotations[0]!.annotations).toHaveLength(5);
   });
 });

@@ -1,6 +1,6 @@
-import {setOutput} from '@actions/core';
-import {Logger} from '@technote-space/github-action-log-helper';
-import {Annotation, Annotations, AnnotationData, AnnotationResult} from '../types';
+import type { Annotation, Annotations, AnnotationData, AnnotationResult } from '../types';
+import type { Logger } from '@technote-space/github-action-log-helper';
+import { setOutput } from '@actions/core';
 
 export const convertAnnotationResult = (annotation: Annotation): AnnotationResult => ({
   job: {
