@@ -33,6 +33,6 @@ describe('getAnnotations', () => {
     expect(annotations).toHaveLength(10);
     expect(annotations[0]).toHaveProperty('job');
     expect(annotations[0]).toHaveProperty('annotations');
-    expect(annotations[0].annotations).toHaveLength(5);
+    expect(annotations[0]!.annotations).toHaveLength(5);
   });
 });

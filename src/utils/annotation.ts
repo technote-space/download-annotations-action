@@ -1,9 +1,9 @@
 import { Context } from '@actions/github/lib/context';
-import { Octokit } from '@technote-space/github-action-helper/dist/types';
+import { Types } from '@technote-space/github-action-helper';
 import { Annotations } from '../types';
 import { getTargetRunId } from './params';
 
-export const getAnnotations = async(octokit: Octokit, context: Context): Promise<Annotations> => {
+export const getAnnotations = async(octokit: Types.Octokit, context: Context): Promise<Annotations> => {
   const workflowJobs = await octokit.paginate(
     octokit.rest.actions.listJobsForWorkflowRun, {
       owner: context.repo.owner,
@@ -20,8 +20,8 @@ export const getAnnotations = async(octokit: Octokit, context: Context): Promise
     }),
   ));
 
-  return workflowJobs.map(job => job.id).map((id, index) => ({
-    job: workflowJobs[index],
-    annotations: annotations[index],
+  return workflowJobs.map(job => job.id).map((_, index) => ({
+    job: workflowJobs[index]!,
+    annotations: annotations[index]!,
   }));
 };
