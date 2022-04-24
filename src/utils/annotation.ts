@@ -1,6 +1,6 @@
-import { Context } from '@actions/github/lib/context';
-import { Types } from '@technote-space/github-action-helper';
-import { Annotations } from '../types';
+import type { Annotations } from '../types';
+import type { Context } from '@actions/github/lib/context';
+import type { Types } from '@technote-space/github-action-helper';
 import { getTargetRunId } from './params';
 
 export const getAnnotations = async(octokit: Types.Octokit, context: Context): Promise<Annotations> => {

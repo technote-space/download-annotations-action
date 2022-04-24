@@ -1,5 +1,5 @@
+import type { Context } from '@actions/github/lib/context';
 import { getInput } from '@actions/core' ;
-import { Context } from '@actions/github/lib/context';
 import { Utils } from '@technote-space/github-action-helper';
 
 export const getTargetRunId                = (context: Context): number => /^\d+$/.test(getInput('TARGET_RUN_ID')) ? Number(getInput('TARGET_RUN_ID')) : context.runId;

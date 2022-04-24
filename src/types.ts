@@ -1,4 +1,4 @@
-import { components } from '@octokit/openapi-types';
+import type { components } from '@octokit/openapi-types';
 
 export type AnnotationData = components['schemas']['check-annotation'];
 export type JobData = components['schemas']['job'];
