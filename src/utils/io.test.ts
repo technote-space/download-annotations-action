@@ -1,8 +1,8 @@
 /* eslint-disable no-magic-numbers */
-import { describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import { resolve } from 'path';
 import { Logger } from '@technote-space/github-action-log-helper';
+import { describe, expect, it, vi } from 'vitest';
 import { createFile } from './io';
 
 vi.mock('fs');

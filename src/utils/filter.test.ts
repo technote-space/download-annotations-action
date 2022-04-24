@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 import { describe, expect, it } from 'vitest';
-import { filterByJobName, filterByLevel, filterByMessage } from './filter';
 import { AnnotationData, JobData } from '../types';
+import { filterByJobName, filterByLevel, filterByMessage } from './filter';
 
 const createJob        = (name: string): JobData => ({
   'id': 123,

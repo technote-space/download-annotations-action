@@ -1,8 +1,7 @@
 /* eslint-disable no-magic-numbers */
-import { describe, expect, it, vi } from 'vitest';
 import fs from 'fs';
 import { resolve } from 'path';
-import nock from 'nock';
+import { Logger } from '@technote-space/github-action-log-helper';
 import {
   testEnv,
   spyOnStdout,
@@ -13,7 +12,8 @@ import {
   disableNetConnect,
   getApiFixture,
 } from '@technote-space/github-action-test-helper';
-import { Logger } from '@technote-space/github-action-log-helper';
+import nock from 'nock';
+import { describe, expect, it, vi } from 'vitest';
 import { execute } from './process';
 
 vi.mock('fs');

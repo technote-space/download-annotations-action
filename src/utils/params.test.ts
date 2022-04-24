@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
-import { describe, expect, it } from 'vitest';
 import { testEnv, generateContext } from '@technote-space/github-action-test-helper';
+import { describe, expect, it } from 'vitest';
 import {
   getTargetRunId,
   getWorkspace,
