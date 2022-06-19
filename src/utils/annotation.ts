@@ -1,9 +1,9 @@
 import type { Annotations } from '../types';
 import type { Context } from '@actions/github/lib/context';
-import type { Types } from '@technote-space/github-action-helper';
+import type { Octokit } from '@technote-space/github-action-helper';
 import { getTargetRunId } from './params';
 
-export const getAnnotations = async(octokit: Types.Octokit, context: Context): Promise<Annotations> => {
+export const getAnnotations = async(octokit: Octokit, context: Context): Promise<Annotations> => {
   const workflowJobs = await octokit.paginate(
     octokit.rest.actions.listJobsForWorkflowRun, {
       owner: context.repo.owner,
