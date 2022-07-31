@@ -1,0 +1,15 @@
+import type { Context } from '@actions/github/lib/context';
+export declare const getTargetRunId: (context: Context) => number;
+export declare const getWorkspace: () => string;
+export declare const getFilename: () => string;
+export declare const getResultFilename: () => string;
+export declare const getIncludeJobNamePatterns: () => Array<string>;
+export declare const getExcludeJobNamePatterns: () => Array<string>;
+export declare const getIncludeJobNamePatternFlags: () => string;
+export declare const getExcludeJobNamePatternFlags: () => string;
+export declare const getIncludeLevels: () => Array<string>;
+export declare const getExcludeLevels: () => Array<string>;
+export declare const getIncludeMessagePatterns: () => Array<string>;
+export declare const getExcludeMessagePatterns: () => Array<string>;
+export declare const getIncludeMessagePatternFlags: () => string;
+export declare const getExcludeMessagePatternFlags: () => string;
