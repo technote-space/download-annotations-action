@@ -5,6 +5,6 @@ export type JobData = components['schemas']['job'];
 export type Annotation = { job: JobData; annotations: Array<AnnotationData> };
 export type Annotations = Array<Annotation>;
 export type AnnotationResult = {
-  job: Pick<JobData, 'id' | 'run_id' | 'status' | 'conclusion' | 'name'>;
+  job: JobData;
   annotations: Array<AnnotationData>;
 }
