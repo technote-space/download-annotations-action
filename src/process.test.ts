@@ -11,6 +11,8 @@ import {
   getLogStdout,
   disableNetConnect,
   getApiFixture,
+  spyOnSetOutput,
+  setOutputCalledWith,
 } from '@technote-space/github-action-test-helper';
 import nock from 'nock';
 import { describe, expect, it, vi } from 'vitest';
@@ -35,6 +37,7 @@ describe('execute', () => {
     vi.spyOn(fs, 'writeFileSync').mockImplementation(writeFileSyncFn);
 
     const mockStdout = spyOnStdout();
+    const mockOutput = spyOnSetOutput();
     nock('https://api.github.com')
       .persist()
       .get('/repos/hello/world/actions/runs/123/jobs')
@@ -263,23 +266,15 @@ describe('execute', () => {
       '::endgroup::',
       '::group::path:',
       `"${rootDir}/\${{ github.workspace }}/annotations.json"`,
-      '',
-      `::set-output name=path::${rootDir}/\${{ github.workspace }}/annotations.json`,
       '::endgroup::',
       '::group::result_path:',
       `"${rootDir}/\${{ github.workspace }}/result.json"`,
-      '',
-      `::set-output name=result_path::${rootDir}/\${{ github.workspace }}/result.json`,
       '::endgroup::',
       '::group::number:',
       '2',
-      '',
-      '::set-output name=number::2',
       '::endgroup::',
       '::group::messages:',
       '"[\\"Warning test1 message\\",\\"Warning test1 message\\"]"',
-      '',
-      '::set-output name=messages::["Warning test1 message","Warning test1 message"]',
     ]);
 
     expect(writeFileSyncFn).toBeCalledTimes(2);
@@ -316,6 +311,12 @@ describe('execute', () => {
           },
         ]),
       ],
+    ]);
+    setOutputCalledWith(mockOutput, [
+      { name: 'path', value: `${rootDir}/\${{ github.workspace }}/annotations.json` },
+      { name: 'result_path', value: `${rootDir}/\${{ github.workspace }}/result.json` },
+      { name: 'number', value: 2 },
+      { name: 'messages', value: '["Warning test1 message","Warning test1 message"]' },
     ]);
   });
 });
