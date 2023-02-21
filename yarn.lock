@@ -620,24 +620,6 @@
     js-yaml "^4.1.0"
     vitest "^0.26.2"
 
-"@technote-space/release-github-actions-cli@^1.9.4":
-  version "1.9.4"
-  resolved "https://registry.yarnpkg.com/@technote-space/release-github-actions-cli/-/release-github-actions-cli-1.9.4.tgz#8b794e007248f96c539e49b215d6fdd2a6109ced"
-  integrity sha512-ZMLAxT2QElZ8sRbI7M9EoTl8DKR+Qhqx7bj5uN0865PPQEUkkgOtF227ZrdX0u3mFn4xGc1sU07NmsUDLs0gkg==
-  dependencies:
-    "@technote-space/github-action-helper" "^5.3.10"
-    "@technote-space/github-action-log-helper" "^0.2.10"
-    "@technote-space/release-github-actions" "^8.0.3"
-    commander "^10.0.0"
-    cosmiconfig "^8.0.0"
-    dotenv "^16.0.3"
-    js-yaml "^4.1.0"
-
-"@technote-space/release-github-actions@^8.0.3":
-  version "8.0.3"
-  resolved "https://registry.yarnpkg.com/@technote-space/release-github-actions/-/release-github-actions-8.0.3.tgz#914ff8e859dd165834d6c1e79d80a7fe89cf8052"
-  integrity sha512-0/8/ANstwtZpCQ4qVcM+TBSso2HW8becPdaBlz8rGeqdhBvNN8kd3RGEEiEXw/gMLLHLUX26YBB30cNt4ZO1Zw==
-
 "@tsconfig/node10@^1.0.7":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@tsconfig/node10/-/node10-1.0.9.tgz#df4907fc07a886922637b15e02d4cebc4c0021b2"
@@ -1215,11 +1197,6 @@ colorette@^2.0.19:
   resolved "https://registry.yarnpkg.com/colorette/-/colorette-2.0.19.tgz#cdf044f47ad41a0f4b56b3a0d5b4e6e1a2d5a798"
   integrity sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==
 
-commander@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-10.0.0.tgz#71797971162cd3cf65f0b9d24eb28f8d303acdf1"
-  integrity sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==
-
 commander@^9.4.1:
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-9.5.0.tgz#bc08d1eb5cedf7ccb797a96199d41c7bc3e60d30"
@@ -1405,11 +1382,6 @@ dot-prop@^5.1.0:
   integrity sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
   dependencies:
     is-obj "^2.0.0"
-
-dotenv@^16.0.3:
-  version "16.0.3"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.3.tgz#115aec42bac5053db3c456db30cc243a5a836a07"
-  integrity sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==
 
 eastasianwidth@^0.2.0:
   version "0.2.0"
