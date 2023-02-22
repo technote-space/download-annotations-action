@@ -1,1 +1,1 @@
-export {};
+import './polyfills/crypto.js';
