@@ -1,3 +1,4 @@
+import './polyfills/crypto.js';
 import { resolve } from 'path';
 import { setFailed } from '@actions/core';
 import { Context } from '@actions/github/lib/context';
