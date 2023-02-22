@@ -1,4 +1,4 @@
-import type { components } from '@octokit/openapi-types';
+import type { components } from '@technote-space/github-action-helper';
 
 export type AnnotationData = components['schemas']['check-annotation'];
 export type JobData = components['schemas']['job'];
